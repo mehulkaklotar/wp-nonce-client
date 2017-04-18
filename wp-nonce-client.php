@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-use mehulkaklotar\wpnonce\NonceConfig;
+use mehulkaklotar\wpnonce\NonceSetting;
 use mehulkaklotar\wpnonce\NonceCreateURL;
 use mehulkaklotar\wpnonce\NonceCreateField;
 use mehulkaklotar\wpnonce\NonceVerify;
@@ -47,9 +47,9 @@ if ( ! class_exists( 'NonceDemo' ) ) {
 		/**
 		 * The configuration
 		 *
-		 * @var NonceConfig
+		 * @var NonceSetting
 		 **/
-		private $config;
+		private $setting;
 
 		/**
 		 * demo
@@ -57,7 +57,7 @@ if ( ! class_exists( 'NonceDemo' ) ) {
 		function run() {
 
 			// Configure the Nonce.
-			$this->config = new NonceConfig(
+			$this->setting = new NonceSetting(
 				'display-post-' . $this->post_id,
 				'_wp_nonce_test',
 				60
@@ -73,7 +73,7 @@ if ( ! class_exists( 'NonceDemo' ) ) {
 
 			get_header();
 
-			$field = new NonceCreateField( $this->config );
+			$field = new NonceCreateField( $this->setting );
 			?>
             <h1>
 				<?php esc_html_e( 'Prove that your human!', 'wp-nonce-client' ); ?>
@@ -86,7 +86,7 @@ if ( ! class_exists( 'NonceDemo' ) ) {
                 <button><?php esc_html_e( 'View Post', 'wp-nonce-client' ); ?></button>
             </form>
 			<?php
-			$url = new NonceCreateURL( $this->config );
+			$url = new NonceCreateURL( $this->setting );
 			?>
             <hr/>
             <p>
@@ -108,7 +108,7 @@ if ( ! class_exists( 'NonceDemo' ) ) {
 				return;
 			}
 
-			$validate = new NonceVerify( $this->config );
+			$validate = new NonceVerify( $this->setting );
 			if ( ! $validate->verify() ) {
 				$this->form();
 				exit;
