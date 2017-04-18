@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url" : "https://github.com/mehulkaklotar/wp-nonce"
+    }
+  ],
+  "require": {
+    "mehulkaklotar/wp-nonce" : "1.0.*"
+  }
+}
